@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4070C902BC9C4E700370E79 /* SaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4070C8F2BC9C4E700370E79 /* SaleView.swift */; };
+		B4070C992BCC862000370E79 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = B4070C982BCC862000370E79 /* CodeScanner */; };
+		B4070C9B2BCC866000370E79 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4070C9A2BCC866000370E79 /* ScannerView.swift */; };
+		B4070C9D2BCDA06C00370E79 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4070C9C2BCDA06C00370E79 /* NotificationView.swift */; };
+		B4070C9F2BD38E6100370E79 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B4070C9E2BD38E6100370E79 /* Localizable.xcstrings */; };
+		B4644EF32BB7DBAC00AE39D5 /* AddWarehouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644EF22BB7DBAC00AE39D5 /* AddWarehouseView.swift */; };
+		B4644EF52BB7DC7900AE39D5 /* EditWarehouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644EF42BB7DC7900AE39D5 /* EditWarehouseView.swift */; };
+		B4644EF72BB7DD3E00AE39D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644EF62BB7DD3E00AE39D5 /* HomeView.swift */; };
+		B4644EF92BB7F26400AE39D5 /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644EF82BB7F26400AE39D5 /* OrderListView.swift */; };
+		B4644EFB2BB8E33200AE39D5 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644EFA2BB8E33200AE39D5 /* ProductDetailView.swift */; };
+		B4644EFD2BBBDD8700AE39D5 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644EFC2BBBDD8700AE39D5 /* EditProductView.swift */; };
+		B4644F062BBBEA9C00AE39D5 /* VerticalProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F052BBBEA9C00AE39D5 /* VerticalProductListView.swift */; };
+		B4644F082BBDD96E00AE39D5 /* RestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F072BBDD96E00AE39D5 /* RestockView.swift */; };
+		B4644F0A2BBDD9CA00AE39D5 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F092BBDD9CA00AE39D5 /* Order.swift */; };
+		B4644F0C2BBDFEAD00AE39D5 /* OrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F0B2BBDFEAD00AE39D5 /* OrderDetailView.swift */; };
+		B4644F0E2BBE082600AE39D5 /* EditOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F0D2BBE082600AE39D5 /* EditOrderView.swift */; };
+		B4644F102BC0AD1800AE39D5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F0F2BC0AD1800AE39D5 /* ProfileView.swift */; };
+		B4644F132BC1050B00AE39D5 /* MoveProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F122BC1050B00AE39D5 /* MoveProductView.swift */; };
+		B4644F152BC109C300AE39D5 /* QRCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F142BC109C300AE39D5 /* QRCodeGenerator.swift */; };
+		B4644F172BC11E1000AE39D5 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F162BC11E1000AE39D5 /* QRCodeView.swift */; };
+		B4644F192BC2645C00AE39D5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4644F182BC2645C00AE39D5 /* User.swift */; };
+		B47802EE2BB67B3F001D9676 /* InventixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47802ED2BB67B3F001D9676 /* InventixApp.swift */; };
+		B47802F22BB67B40001D9676 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47802F12BB67B40001D9676 /* Assets.xcassets */; };
+		B47802F52BB67B40001D9676 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B47802F42BB67B40001D9676 /* Preview Assets.xcassets */; };
+		B47802FC2BB67B5D001D9676 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47802FB2BB67B5D001D9676 /* ProductListView.swift */; };
+		B47802FE2BB67B89001D9676 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47802FD2BB67B89001D9676 /* Product.swift */; };
+		B47803022BB67F81001D9676 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47803012BB67F81001D9676 /* InventoryViewModel.swift */; };
+		B47803042BB7845B001D9676 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47803032BB7845B001D9676 /* Category.swift */; };
+		B47803082BB7C0DA001D9676 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47803072BB7C0DA001D9676 /* AddProductView.swift */; };
+		B478030A2BB7CBF8001D9676 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47803092BB7CBF8001D9676 /* CategoryListView.swift */; };
+		B478030E2BB7CEC9001D9676 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478030D2BB7CEC9001D9676 /* AddCategoryView.swift */; };
+		B47803102BB7D125001D9676 /* WarehouseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B478030F2BB7D125001D9676 /* WarehouseListView.swift */; };
+		B47803122BB7D18E001D9676 /* Warehouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47803112BB7D18E001D9676 /* Warehouse.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B4070C8F2BC9C4E700370E79 /* SaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleView.swift; sourceTree = "<group>"; };
+		B4070C9A2BCC866000370E79 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		B4070C9C2BCDA06C00370E79 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		B4070C9E2BD38E6100370E79 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		B4644EF22BB7DBAC00AE39D5 /* AddWarehouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWarehouseView.swift; sourceTree = "<group>"; };
+		B4644EF42BB7DC7900AE39D5 /* EditWarehouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWarehouseView.swift; sourceTree = "<group>"; };
+		B4644EF62BB7DD3E00AE39D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B4644EF82BB7F26400AE39D5 /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
+		B4644EFA2BB8E33200AE39D5 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		B4644EFC2BBBDD8700AE39D5 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
+		B4644F052BBBEA9C00AE39D5 /* VerticalProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProductListView.swift; sourceTree = "<group>"; };
+		B4644F072BBDD96E00AE39D5 /* RestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockView.swift; sourceTree = "<group>"; };
+		B4644F092BBDD9CA00AE39D5 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		B4644F0B2BBDFEAD00AE39D5 /* OrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
+		B4644F0D2BBE082600AE39D5 /* EditOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOrderView.swift; sourceTree = "<group>"; };
+		B4644F0F2BC0AD1800AE39D5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B4644F122BC1050B00AE39D5 /* MoveProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveProductView.swift; sourceTree = "<group>"; };
+		B4644F142BC109C300AE39D5 /* QRCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGenerator.swift; sourceTree = "<group>"; };
+		B4644F162BC11E1000AE39D5 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		B4644F182BC2645C00AE39D5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B47802EA2BB67B3F001D9676 /* Inventix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inventix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B47802ED2BB67B3F001D9676 /* InventixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventixApp.swift; sourceTree = "<group>"; };
+		B47802F12BB67B40001D9676 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B47802F42BB67B40001D9676 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B47802FB2BB67B5D001D9676 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
+		B47802FD2BB67B89001D9676 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		B47803012BB67F81001D9676 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
+		B47803032BB7845B001D9676 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B47803072BB7C0DA001D9676 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
+		B47803092BB7CBF8001D9676 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		B478030D2BB7CEC9001D9676 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		B478030F2BB7D125001D9676 /* WarehouseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseListView.swift; sourceTree = "<group>"; };
+		B47803112BB7D18E001D9676 /* Warehouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warehouse.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B47802E72BB67B3F001D9676 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4070C992BCC862000370E79 /* CodeScanner in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4644EFE2BBBE15800AE39D5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4644EF62BB7DD3E00AE39D5 /* HomeView.swift */,
+				B4070C9A2BCC866000370E79 /* ScannerView.swift */,
+				B4644F0F2BC0AD1800AE39D5 /* ProfileView.swift */,
+				B4644F162BC11E1000AE39D5 /* QRCodeView.swift */,
+				B4070C9C2BCDA06C00370E79 /* NotificationView.swift */,
+				B4644F032BBBE1D900AE39D5 /* Order */,
+				B4644F022BBBE1B400AE39D5 /* Warehouse */,
+				B4644F002BBBE17F00AE39D5 /* Category */,
+				B4644EFF2BBBE16B00AE39D5 /* Product */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B4644EFF2BBBE16B00AE39D5 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				B47802FB2BB67B5D001D9676 /* ProductListView.swift */,
+				B4644EFA2BB8E33200AE39D5 /* ProductDetailView.swift */,
+				B4644EFC2BBBDD8700AE39D5 /* EditProductView.swift */,
+				B47803072BB7C0DA001D9676 /* AddProductView.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		B4644F002BBBE17F00AE39D5 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				B478030D2BB7CEC9001D9676 /* AddCategoryView.swift */,
+				B47803092BB7CBF8001D9676 /* CategoryListView.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		B4644F012BBBE19A00AE39D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B47803112BB7D18E001D9676 /* Warehouse.swift */,
+				B47802FD2BB67B89001D9676 /* Product.swift */,
+				B47803032BB7845B001D9676 /* Category.swift */,
+				B4644F092BBDD9CA00AE39D5 /* Order.swift */,
+				B4644F142BC109C300AE39D5 /* QRCodeGenerator.swift */,
+				B4644F182BC2645C00AE39D5 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B4644F022BBBE1B400AE39D5 /* Warehouse */ = {
+			isa = PBXGroup;
+			children = (
+				B478030F2BB7D125001D9676 /* WarehouseListView.swift */,
+				B4644EF42BB7DC7900AE39D5 /* EditWarehouseView.swift */,
+				B4644EF22BB7DBAC00AE39D5 /* AddWarehouseView.swift */,
+				B4644F052BBBEA9C00AE39D5 /* VerticalProductListView.swift */,
+			);
+			path = Warehouse;
+			sourceTree = "<group>";
+		};
+		B4644F032BBBE1D900AE39D5 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				B4644EF82BB7F26400AE39D5 /* OrderListView.swift */,
+				B4644F0B2BBDFEAD00AE39D5 /* OrderDetailView.swift */,
+				B4644F0D2BBE082600AE39D5 /* EditOrderView.swift */,
+				B4644F072BBDD96E00AE39D5 /* RestockView.swift */,
+				B4644F122BC1050B00AE39D5 /* MoveProductView.swift */,
+				B4070C8F2BC9C4E700370E79 /* SaleView.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		B4644F042BBBE1F400AE39D5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B47803012BB67F81001D9676 /* InventoryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B47802E12BB67B3F001D9676 = {
+			isa = PBXGroup;
+			children = (
+				B47802EC2BB67B3F001D9676 /* Inventix */,
+				B47802EB2BB67B3F001D9676 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B47802EB2BB67B3F001D9676 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B47802EA2BB67B3F001D9676 /* Inventix.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B47802EC2BB67B3F001D9676 /* Inventix */ = {
+			isa = PBXGroup;
+			children = (
+				B4644F042BBBE1F400AE39D5 /* ViewModels */,
+				B4644F012BBBE19A00AE39D5 /* Models */,
+				B4644EFE2BBBE15800AE39D5 /* Views */,
+				B47802ED2BB67B3F001D9676 /* InventixApp.swift */,
+				B47802F12BB67B40001D9676 /* Assets.xcassets */,
+				B47802F32BB67B40001D9676 /* Preview Content */,
+				B4070C9E2BD38E6100370E79 /* Localizable.xcstrings */,
+			);
+			path = Inventix;
+			sourceTree = "<group>";
+		};
+		B47802F32BB67B40001D9676 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B47802F42BB67B40001D9676 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B47802E92BB67B3F001D9676 /* Inventix */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B47802F82BB67B40001D9676 /* Build configuration list for PBXNativeTarget "Inventix" */;
+			buildPhases = (
+				B47802E62BB67B3F001D9676 /* Sources */,
+				B47802E72BB67B3F001D9676 /* Frameworks */,
+				B47802E82BB67B3F001D9676 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Inventix;
+			packageProductDependencies = (
+				B4070C982BCC862000370E79 /* CodeScanner */,
+			);
+			productName = Inventix;
+			productReference = B47802EA2BB67B3F001D9676 /* Inventix.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B47802E22BB67B3F001D9676 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					B47802E92BB67B3F001D9676 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = B47802E52BB67B3F001D9676 /* Build configuration list for PBXProject "Inventix" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				vi,
+			);
+			mainGroup = B47802E12BB67B3F001D9676;
+			packageReferences = (
+				B4070C972BCC862000370E79 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
+			productRefGroup = B47802EB2BB67B3F001D9676 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B47802E92BB67B3F001D9676 /* Inventix */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B47802E82BB67B3F001D9676 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B47802F52BB67B40001D9676 /* Preview Assets.xcassets in Resources */,
+				B47802F22BB67B40001D9676 /* Assets.xcassets in Resources */,
+				B4070C9F2BD38E6100370E79 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B47802E62BB67B3F001D9676 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B47802FC2BB67B5D001D9676 /* ProductListView.swift in Sources */,
+				B4644EF92BB7F26400AE39D5 /* OrderListView.swift in Sources */,
+				B4644F0A2BBDD9CA00AE39D5 /* Order.swift in Sources */,
+				B4644F062BBBEA9C00AE39D5 /* VerticalProductListView.swift in Sources */,
+				B47803122BB7D18E001D9676 /* Warehouse.swift in Sources */,
+				B4644F192BC2645C00AE39D5 /* User.swift in Sources */,
+				B4644F172BC11E1000AE39D5 /* QRCodeView.swift in Sources */,
+				B4644F0C2BBDFEAD00AE39D5 /* OrderDetailView.swift in Sources */,
+				B4644F152BC109C300AE39D5 /* QRCodeGenerator.swift in Sources */,
+				B4644EFB2BB8E33200AE39D5 /* ProductDetailView.swift in Sources */,
+				B47802FE2BB67B89001D9676 /* Product.swift in Sources */,
+				B4644EF52BB7DC7900AE39D5 /* EditWarehouseView.swift in Sources */,
+				B478030A2BB7CBF8001D9676 /* CategoryListView.swift in Sources */,
+				B4644F132BC1050B00AE39D5 /* MoveProductView.swift in Sources */,
+				B47803102BB7D125001D9676 /* WarehouseListView.swift in Sources */,
+				B47803022BB67F81001D9676 /* InventoryViewModel.swift in Sources */,
+				B47803082BB7C0DA001D9676 /* AddProductView.swift in Sources */,
+				B4644EFD2BBBDD8700AE39D5 /* EditProductView.swift in Sources */,
+				B4070C902BC9C4E700370E79 /* SaleView.swift in Sources */,
+				B4070C9B2BCC866000370E79 /* ScannerView.swift in Sources */,
+				B4644F0E2BBE082600AE39D5 /* EditOrderView.swift in Sources */,
+				B47802EE2BB67B3F001D9676 /* InventixApp.swift in Sources */,
+				B4644F102BC0AD1800AE39D5 /* ProfileView.swift in Sources */,
+				B4644EF32BB7DBAC00AE39D5 /* AddWarehouseView.swift in Sources */,
+				B4644F082BBDD96E00AE39D5 /* RestockView.swift in Sources */,
+				B478030E2BB7CEC9001D9676 /* AddCategoryView.swift in Sources */,
+				B4644EF72BB7DD3E00AE39D5 /* HomeView.swift in Sources */,
+				B47803042BB7845B001D9676 /* Category.swift in Sources */,
+				B4070C9D2BCDA06C00370E79 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B47802F62BB67B40001D9676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B47802F72BB67B40001D9676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B47802F92BB67B40001D9676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Inventix/Preview Content\"";
+				DEVELOPMENT_TEAM = ZTL7H4UB85;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow users to scan barcodes";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.khanhchhung.Inventix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B47802FA2BB67B40001D9676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Inventix/Preview Content\"";
+				DEVELOPMENT_TEAM = ZTL7H4UB85;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow users to scan barcodes";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.khanhchhung.Inventix;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B47802E52BB67B3F001D9676 /* Build configuration list for PBXProject "Inventix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B47802F62BB67B40001D9676 /* Debug */,
+				B47802F72BB67B40001D9676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B47802F82BB67B40001D9676 /* Build configuration list for PBXNativeTarget "Inventix" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B47802F92BB67B40001D9676 /* Debug */,
+				B47802FA2BB67B40001D9676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4070C972BCC862000370E79 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4070C982BCC862000370E79 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4070C972BCC862000370E79 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B47802E22BB67B3F001D9676 /* Project object */;
+}
