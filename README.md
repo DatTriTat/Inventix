@@ -21,7 +21,7 @@ To install Inventix on your iOS device, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/Inventix-iOS.git
+   https://github.com/DatTriTat/Inventix.git
    ```
 
 2. Open the project in Xcode.
@@ -35,8 +35,11 @@ The Inventix Spring Boot backend provides a robust API for the Inventix iOS app.
 ## Features
 
 - **RESTful API**: Exposes a set of HTTP endpoints for managing inventory data.
+  
 - **CRUD Operations**: Supports adding, editing, deleting, and viewing inventory items.
+  
 - **Data Persistence**: Utilizes a database (via Spring Data JPA) to securely store and retrieve inventory information.
+  
 - **Categorization**: Allows items to be categorized for better organization.
 
 ## Requirements
@@ -52,13 +55,13 @@ If you have any questions or find any issues, you can pull request. We'll gladly
 Running All 5 Microservices. The Inventix backend requires 5 services to run for full functionality. Each service is a Spring Boot application with its own Makefile commands to simplify building and running.
 
 1. Build the Application
-To compile and package the Spring Boot application, run: make build
+To compile and package the Spring Boot application, run:    ```make build```
 
 2. Run the Application
-After building, start the application using the following command: make run
+After building, start the application using the following command: ```make run```
 
 3. Clean the Project
-To clean up the compiled files, run: make clean
+To clean up the compiled files, run: ```make clean```
 
 
 
