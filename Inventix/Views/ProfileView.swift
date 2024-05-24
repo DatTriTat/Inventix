@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(InventoryViewModel.self) private var store
-    
+    @StateObject private var store = InventoryViewModel()
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel
+    init(authenticationViewModel: AuthenticationViewModel) {
+            self._authenticationViewModel = ObservedObject(wrappedValue: authenticationViewModel)
+        }
     var body: some View {
-        @Bindable var store = store
         Form {
             Section("User Information") {
                 HStack(alignment: .top) {
@@ -25,10 +27,10 @@ struct ProfileView: View {
                         ProgressView()
                     }
                     VStack(alignment: .leading) {
-                        Text("Elise Beverley")
+                        Text("\(SessionManager.shared.currentUserSession!.firstName) \(SessionManager.shared.currentUserSession!.lastName)")
                             .font(.title2)
                             .fontWeight(.semibold)
-                        Text(verbatim: "elise@example.com")
+                        Text(verbatim: "\(SessionManager.shared.currentUserSession!.email)")
                             .foregroundStyle(.gray)
                     }
                 }
@@ -48,7 +50,7 @@ struct ProfileView: View {
             
             
             Button("Sign out", role: .destructive) {
-                
+                authenticationViewModel.logOut()
             }
             .listRowBackground(Color.customSection)
         }
@@ -57,10 +59,11 @@ struct ProfileView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.background)
+        
     }
 }
 
 #Preview {
-    ProfileView()
-        .environment(InventoryViewModel())
+    ProfileView(authenticationViewModel: AuthenticationViewModel(inventoryViewModel: InventoryViewModel()))
+        .environmentObject(InventoryViewModel())
 }

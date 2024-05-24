@@ -8,13 +8,35 @@
 import SwiftUI
 import UserNotifications
 
+import Firebase
+
 @main
 struct InventixApp: App {
-    @State private var productStore = InventoryViewModel()
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var productStore = InventoryViewModel()
+    @StateObject private var sessionManager = SessionManager.shared
     var body: some Scene {
         WindowGroup {
-            HomeView().environment(productStore)
+            ContentView(sessionManager: sessionManager, productStore: productStore)
+                .environmentObject(productStore)
+                .environmentObject(sessionManager)
         }
     }
 }
+
+struct ContentView: View {
+    @ObservedObject var sessionManager: SessionManager
+    @StateObject var productStore: InventoryViewModel
+
+    var body: some View {
+        if sessionManager.getAuthToken() != nil, productStore.allDataLoaded {
+            HomeView()
+                .environmentObject(productStore)
+                .environmentObject(sessionManager)
+        } else {
+            LoginView(authenticationViewModel: AuthenticationViewModel(inventoryViewModel: productStore))
+        }
+    }
+}
+
+

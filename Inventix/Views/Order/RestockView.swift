@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RestockView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @Environment(\.dismiss) private var dismiss
-    @State var product: Product
+    @Binding var product: Product
     @State private var quantity = 0
     @State private var date = Date()
     @State private var selectedWarehouse: Warehouse?
@@ -72,23 +72,19 @@ struct RestockView: View {
                     Button("Save") {
                         if let selectedWarehouse {
                             store.restock(
-                                Order(productId: product.id, warehouseId: selectedWarehouse.id, stock: quantity, action: "Restock", date: date)
+                                Order(productId: product.id, warehouseId: selectedWarehouse.id, stock: quantity, action: "Restock", date: date, notes: notes)
                             )
+
                             dismiss()
                         }
                     }
                     .disabled(quantity <= 0 || selectedWarehouse == nil)
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.background)
+            .onAppear() {
+                store.loadWarehouses()
+            }
         }
     }
 }
 
-#Preview {
-    NavigationStack {
-        RestockView(product: Product.example[0])
-            .environment(InventoryViewModel())
-    }
-}

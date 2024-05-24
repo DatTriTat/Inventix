@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct EditOrderView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @Environment(\.dismiss) private var dismiss
     @Binding var order: Order
-    
+    @State var product: Product
     var body: some View {
-        let product = store.getProductFromOrder(order)!
         let maxQuantity = store.getQuantity(productId: product.id)
         
         Form {
@@ -66,14 +65,9 @@ struct EditOrderView: View {
                 .disabled(order.stock > maxQuantity)
             }
         }
-        .scrollContentBackground(.hidden)
-        .background(Color.background)
+        .onAppear(){
+            store.loadUserData()
+        }
     }
 }
 
-#Preview {
-    NavigationStack {
-        EditOrderView(order: .constant(Order.example[0]))
-            .environment(InventoryViewModel())
-    }
-}

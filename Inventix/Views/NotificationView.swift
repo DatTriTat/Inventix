@@ -34,8 +34,13 @@ struct NotificationView: View {
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
                 // add our notification request
-                UNUserNotificationCenter.current().add(request)
-            }
+                UNUserNotificationCenter.current().add(request) { error in
+                        if let error = error {
+                            print("Error scheduling notification: \(error.localizedDescription)")
+                        } else {
+                            print("Notification scheduled successfully")
+                        }
+                    }            }
         }
     }
 }

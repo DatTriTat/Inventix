@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddWarehouseView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @Environment(\.dismiss) private var dismiss
     
     @State private var name = ""
@@ -49,7 +49,7 @@ struct AddWarehouseView: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save") {
-                    store.addWarehouse(Warehouse(name: name, address: address))
+                    store.addWarehouse(name: name, address: address)
                     dismiss()
                 }
                 .disabled(name.isEmpty && address.isEmpty)
@@ -61,6 +61,6 @@ struct AddWarehouseView: View {
 #Preview {
     NavigationStack {
         AddWarehouseView()
-            .environment(InventoryViewModel())
+            .environmentObject(InventoryViewModel())
     }
 }

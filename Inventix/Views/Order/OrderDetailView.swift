@@ -9,38 +9,45 @@ import SwiftUI
 
 struct OrderDetailView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @State private var showEditOrder = false
     @State var order: Order
     @State private var deleteConfirm = false
-    
+    @State var product: Product
+
     var body: some View {
-        let product = store.getProductFromOrder(order)!
         
         NavigationStack {
             Form {                
                 Section {
                     productInfo
                 }
+                .listRowBackground(Color.customSection)
                             
                 Section("Inventory Information") {
                     inventoryInfo
                 }
+                .listRowBackground(Color.customSection)
                 
                 if !order.notes.isEmpty {
                     Section("Notes") {
                         Text(order.notes)
                     }
+                    .listRowBackground(Color.customSection)
                 }
                 
                 Section("Barcode") {
                     QRCodeView(text: product.sku)
                 }
+                .listRowBackground(Color.customSection)
+            }
+            .onAppear() {
+                store.loadUserData()
             }
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showEditOrder) {
                 NavigationStack {
-                    EditOrderView(order: $order)
+                    EditOrderView(order: $order, product: product)
                         .navigationTitle("Edit Order")
                         .navigationBarTitleDisplayMode(.inline)
                 }
@@ -57,13 +64,12 @@ struct OrderDetailView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Color.background)
+    
         }
     }
     
     @ViewBuilder
-    private var productInfo: some View {
-        let product = store.getProductFromOrder(order)!
-        
+    private var productInfo: some View {        
         HStack(alignment: .top) {
             AsyncImage(url: URL(string: product.imageUrl)) { image in
                 image
@@ -106,9 +112,6 @@ struct OrderDetailView: View {
             }
         }
     }
+ 
 }
 
-#Preview {
-    OrderDetailView(order: Order.example[0])
-        .environment(InventoryViewModel())
-}

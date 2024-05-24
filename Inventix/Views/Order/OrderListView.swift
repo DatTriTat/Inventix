@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OrderListView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @State private var searchText = ""
     var orders: [Order]
     
@@ -21,29 +21,37 @@ struct OrderListView: View {
         List(filteredOrders()) { order in
             if let product = store.getProductFromOrder(order) {
                 NavigationLink {
-                    OrderDetailView(order: order)
-                        .environment(store)
+                    OrderDetailView(order: order, product: product)
+                        .environmentObject(InventoryViewModel())
                 } label: {
                     let isAdded = order.stock > 0
                     
-                    VStack(alignment: .leading) {
-                        Text(product.name).fontWeight(.semibold)
-                        HStack(alignment: .bottom) {
+                    HStack(alignment: .center) {
+                        VStack(alignment: .leading) {
+                            Text(product.name).fontWeight(.semibold)
                             Text("\(isAdded ? "+" : "")\(order.stock) (\(order.action))").font(.footnote).foregroundStyle(.secondary)
-                            Spacer()
-                            Text(order.date, style: .date)
-                                .foregroundStyle(.secondary)
-                                .padding(.horizontal)
+                                .font(.footnote)
                         }
+                        Spacer()
+                        Text(order.date, style: .date)
+                            .foregroundStyle(.secondary)
+                            .font(.footnote)
                     }
                 }
+ 
                 .listRowBackground(Color.background)
             }
+            
+        }
+        .onAppear() {
+            store.loadUserData()
+
         }
         .background(Color.background)
         .listStyle(.plain)
         .navigationTitle("Order History")
         .searchable(text: $searchText)
+
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -80,7 +88,7 @@ struct OrderListView: View {
             }
         }
     }
-    
+
     var monthPicker: some View {
         Picker("", selection: $selectedMonth.animation()) {
             ForEach(Calendar.current.monthSymbols) { month in
@@ -98,7 +106,8 @@ struct OrderListView: View {
     }
     
     func filteredOrders() -> [Order] {
-        var orders = store.filteredOrders(orders, searchText: searchText)
+
+        var orders = store.filteredOrders(store.orders, searchText: searchText)
         
         if selectedSort == .oldest {
             orders = orders.sorted { $0.date < $1.date }
@@ -138,9 +147,3 @@ extension Date {
     }
 }
 
-#Preview {
-    NavigationStack {
-        OrderListView(orders: Order.example)
-            .environment(InventoryViewModel())
-    }
-}

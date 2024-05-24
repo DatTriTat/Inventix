@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
     var username: String
-    var password: String
+    var token: String
     var firstName: String
     var lastName: String
     var email: String

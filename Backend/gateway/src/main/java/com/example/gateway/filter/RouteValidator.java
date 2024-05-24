@@ -12,7 +12,8 @@ public class RouteValidator {
             "/register",
             "/login",
             "/eureka",
-            "/changePassword");
+            "/changePassword",
+            "/favicon.ico");
 
     public Predicate<ServerHttpRequest> isSecured = new SecurePredicate();
 

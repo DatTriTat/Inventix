@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct CategoryListView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @EnvironmentObject private var store: InventoryViewModel
     @State private var searchText = ""
     @State private var showAddCategory = false
-    
+    @EnvironmentObject private var navigationController: NavigationController
     var body: some View {
         let categories = store.filteredOrders(store.categories, searchText: searchText)
         List(categories) { category in
             NavigationLink {
                 VerticalProductListView(products: store.productsByCategory(category))
                     .navigationTitle("Products")
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
+                    .environmentObject(NavigationController())
                     .background(Color.background)
             } label: {
                 VStack(alignment: .leading) {
@@ -50,12 +51,18 @@ struct CategoryListView: View {
         }
         .listStyle(.plain)
         .background(Color.background)
+        .onAppear() {
+            store.loadUserData()
+        }
+        
+
+        
     }
 }
 
 #Preview {
     NavigationStack {
         CategoryListView()
-            .environment(InventoryViewModel())
+            .environmentObject(InventoryViewModel())
     }
 }

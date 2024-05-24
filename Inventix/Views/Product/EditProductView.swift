@@ -10,7 +10,7 @@ import SwiftUI
 struct EditProductView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(InventoryViewModel.self) private var store
+    @EnvironmentObject private var store: InventoryViewModel
     @Binding var product: Product
     
     var body: some View {
@@ -79,6 +79,9 @@ struct EditProductView: View {
         }
         .navigationTitle("Edit Product")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear(){
+            store.loadCategories()
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Cancel", role: .cancel) {
@@ -97,7 +100,3 @@ struct EditProductView: View {
     }
 }
 
-#Preview {
-    EditProductView(product: .constant(Product.example[0]))
-        .environment(InventoryViewModel())
-}

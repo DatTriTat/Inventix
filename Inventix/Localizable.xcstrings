@@ -7,6 +7,16 @@
     "%@" : {
 
     },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "%@%lld (%@)" : {
       "localizations" : {
         "en" : {
@@ -21,10 +31,24 @@
 
     },
     "%lld products" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld sản phẩm"
+          }
+        }
+      }
     },
     "%lld units" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld đơn vị"
+          }
+        }
+      }
     },
     "Actions" : {
       "localizations" : {
@@ -90,6 +114,16 @@
         }
       }
     },
+    "Already have an account?" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã có tài khoản?"
+          }
+        }
+      }
+    },
     "Are you sure to delete this product?" : {
       "localizations" : {
         "vi" : {
@@ -106,6 +140,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bạn có muốn xoá không?"
+          }
+        }
+      }
+    },
+    "Available: %lld" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khả Dụng: %lld"
           }
         }
       }
@@ -153,6 +197,16 @@
         }
       }
     },
+    "Chat" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hội Thoại"
+          }
+        }
+      }
+    },
     "Choose a photo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -160,6 +214,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chọn một bức ảnh"
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đóng"
           }
         }
       }
@@ -207,6 +271,16 @@
         }
       }
     },
+    "Don't have an account?" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có tài khoản"
+          }
+        }
+      }
+    },
     "Edit" : {
       "localizations" : {
         "vi" : {
@@ -250,11 +324,62 @@
       }
     },
     "Elise Beverley" : {
+      "extractionState" : "stale",
       "localizations" : {
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elise Beverley"
+          }
+        }
+      }
+    },
+    "Enter first name" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập Tên"
+          }
+        }
+      }
+    },
+    "Enter last name" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập Họ"
+          }
+        }
+      }
+    },
+    "Enter user name" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập Tài Khoản"
+          }
+        }
+      }
+    },
+    "Enter your email" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập Email"
+          }
+        }
+      }
+    },
+    "Enter your password" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập Mật Khẩu"
           }
         }
       }
@@ -275,6 +400,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ngày Hết Hạn"
+          }
+        }
+      }
+    },
+    "Forgot Password?" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quên Mật Khẩu"
           }
         }
       }
@@ -338,6 +473,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thông tin Kho Hàng"
+          }
+        }
+      }
+    },
+    "Login" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng Nhập"
+          }
+        }
+      }
+    },
+    "Low Stock" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sắp Hết Hàng"
           }
         }
       }
@@ -440,6 +595,16 @@
         }
       }
     },
+    "Out of Stock" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hết Hàng"
+          }
+        }
+      }
+    },
     "Photo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -533,6 +698,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nhập Hàng"
+          }
+        }
+      }
+    },
+    "Restock Product" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập Lại Hàng"
           }
         }
       }
@@ -654,6 +829,16 @@
         }
       }
     },
+    "Sign Up" : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng Kí"
+          }
+        }
+      }
+    },
     "SKU" : {
       "localizations" : {
         "vi" : {
@@ -697,7 +882,14 @@
       }
     },
     "Time" : {
-
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thời Gian"
+          }
+        }
+      }
     },
     "To" : {
       "extractionState" : "manual",
@@ -706,6 +898,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đến"
+          }
+        }
+      }
+    },
+    "Type your message here..." : {
+      "localizations" : {
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập tin nhắn ở đây"
           }
         }
       }

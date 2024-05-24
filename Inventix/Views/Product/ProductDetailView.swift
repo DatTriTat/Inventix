@@ -9,16 +9,21 @@ import SwiftUI
 
 struct ProductDetailView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(InventoryViewModel.self) private var store
+    @Environment(\.presentationMode) var presentationMode
+    @State private var navigateToRoot = false // State to navigate back to root
+    @EnvironmentObject private var store: InventoryViewModel
     @State var product: Product
     @State private var showProductEditor = false
     @State private var deleteConfirm = false
     @State private var showRestock = false
     @State private var showMove = false
     @State private var showSale = false
+    @EnvironmentObject private var navigationController: NavigationController
+    
     var isWarehouseView = false
     
     var body: some View {
+        
         Form {
             Section("Product Information") {
                 productInfo.listRowSeparator(.visible)
@@ -47,7 +52,7 @@ struct ProductDetailView: View {
                 QRCodeView(text: product.sku)
             }
             .listRowBackground(Color.customSection)
-
+            
             
             let orders = store.orders.filter { $0.productId == product.id }
             if !orders.isEmpty {
@@ -55,9 +60,8 @@ struct ProductDetailView: View {
                     List(orders) { order in
                         if let product = store.getProductFromOrder(order) {
                             NavigationLink {
-                                OrderDetailView(order: order)
-                                    .environment(store)
-                                    .navigationTitle("Order Details")
+                                OrderDetailView(order: order, product: product)
+                                    .environmentObject(store)
                             } label: {
                                 let isAdded = order.stock > 0
                                 HStack(alignment: .bottom) {
@@ -82,17 +86,23 @@ struct ProductDetailView: View {
                 EditProductView(product: $product)
             }
         }
-        .sheet(isPresented: $showRestock) {
+        .sheet(isPresented: $showRestock, onDismiss: {
+            store.loadUserData()
+        }) {
             NavigationStack {
-                RestockView(product: product)
+                RestockView(product: $product)
             }
         }
-        .sheet(isPresented: $showMove) {
+        .sheet(isPresented: $showMove, onDismiss: {
+            store.loadUserData()
+        }) {
             NavigationStack {
                 MoveProductView(product: $product)
             }
         }
-        .sheet(isPresented: $showSale) {
+        .sheet(isPresented: $showSale,onDismiss: {
+            store.loadUserData()
+        }) {
             NavigationStack {
                 SaleView(product: $product)
             }
@@ -113,9 +123,28 @@ struct ProductDetailView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.background)
+
+        
+        .confirmationDialog("Are you sure to delete?", isPresented: $deleteConfirm) {
+            Button("Delete", role: .destructive) {
+                navigationController.navigateBackToCategoryList()
+                store.removeProduct(product)
+                store.loadUserData()
+                dismiss()
+                
+            }
+            Button("Cancel", role: .cancel) {
+                deleteConfirm = false
+            }
+        } message: {
+            Text("Are you sure to delete this product?")
+        }
     }
-    
+
+    @ViewBuilder
     private var productInfo: some View {
+        let quantity = store.getQuantity(productId: product.id)
+
         HStack(alignment: .top) {
             AsyncImage(url: URL(string: product.imageUrl)) { image in
                 image
@@ -134,6 +163,17 @@ struct ProductDetailView: View {
                 Text(product.sku)
                     .font(.headline)
                     .foregroundStyle(.secondary)
+                if quantity <= 0 {
+                    Text("Out of Stock")
+                        .fontWeight(.semibold)
+                        .padding(.vertical, 5)
+                        .foregroundStyle(Color.red)
+                } else if quantity <= product.minStock {
+                    Text("Low Stock")
+                        .fontWeight(.semibold)
+                        .padding(.vertical, 5)
+                        .foregroundStyle(Color.orange)
+                }
             }
         }
     }
@@ -165,44 +205,25 @@ struct ProductDetailView: View {
                 Label("Move", systemImage: "shippingbox.and.arrow.backward.fill")
             }
             
-            if !isWarehouseView {
-                Button(role: .destructive) {
-                    deleteConfirm.toggle()
-                } label: {
-                    Label("Delete", systemImage: "trash")
-                        .labelStyle(.titleAndIcon)
-                        .frame(maxWidth: .infinity)
-                }
-                .confirmationDialog("Are you sure to delete?", isPresented: $deleteConfirm) {
-                    Button("Delete", role: .destructive) {
-                        store.removeProduct(product)
-                        dismiss()
-                    }
-                    Button("Cancel", role: .cancel) {
-                        deleteConfirm = false
-                    }
-                } message: {
-                    Text("Are you sure to delete this product?")
-                }
+            Button(role: .destructive) {
+                deleteConfirm.toggle()
+            } label: {
+                Label("Delete", systemImage: "trash")
+                    .labelStyle(.titleAndIcon)
+                    .frame(maxWidth: .infinity)
             }
+            
+            
         }
     }
     
     @ViewBuilder
     private var inventoryInfo: some View {
         let quantity = store.getQuantity(productId: product.id)
-        let indicatorColor = if quantity <= 0 {
-            Color.red
-        } else if quantity <= product.minStock {
-            Color.orange
-        } else {
-            Color.secondary
-        }
-                                         
+
         Group {
             LabeledContent("Current Inventory") {
                 Text("\(quantity)")
-                    .foregroundStyle(indicatorColor)
                 Text("units")
             }
             
@@ -218,19 +239,28 @@ struct ProductDetailView: View {
             }
             
             LabeledContent("Price") {
-                Text(product.price, format: .currency(code: "USD"))
+                Text(currencyFormatter.string(for: product.price) ?? "$0,00")
             }
             
             LabeledContent("Expired Date") {
-                Text(product.expired, style: .date)
+                Text(product.expired!, style: .date)
             }
         }
+        .onAppear() {
+            store.loadUserData()
+        }
     }
+    private let currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "$"
+        formatter.currencyDecimalSeparator = ","
+        formatter.currencyGroupingSeparator = "."
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        formatter.locale = Locale(identifier: "en_US")  //
+        return formatter
+    }()
+    
 }
 
-#Preview {
-    NavigationStack {
-        ProductDetailView(product: Product.example[0])
-            .environment(InventoryViewModel())
-    }
-}

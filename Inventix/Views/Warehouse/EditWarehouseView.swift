@@ -11,7 +11,8 @@ struct EditWarehouseView: View {
     @Environment(\.dismiss) private var dismiss
     var warehouse: Warehouse
     @State private var name: String
-    
+    @StateObject private var store = InventoryViewModel()
+
     init(warehouse: Warehouse) {
         self.warehouse = warehouse
         self.name = self.warehouse.name
@@ -48,9 +49,9 @@ struct EditWarehouseView: View {
                 .disabled(name == warehouse.name)
             }
         }
+        .onAppear() {
+            store.loadWarehouses()
+        }
     }
 }
 
-#Preview {
-    EditWarehouseView(warehouse: Warehouse.example[0])
-}

@@ -12,7 +12,6 @@ public class AuthRequest {
     private String username;
     private String password;
     private String firstName;
-    private String firstLame;
+    private String lastName;
     private String email;
-
 }

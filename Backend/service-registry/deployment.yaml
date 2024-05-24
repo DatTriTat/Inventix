@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-registry
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      name: service-registry
+  replicas: 2
+  template: 
+    metadata:
+      labels:
+        name: service-registry
+    spec:
+      containers:
+      - name: service-registry
+        image: dattritat/service-registry:v0.1
+        ports: 
+        - containerPort: 8761

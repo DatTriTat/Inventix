@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SaleView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @Environment(\.dismiss) private var dismiss
     @Binding var product: Product
     @State private var quantity = 0
@@ -70,7 +70,7 @@ struct SaleView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save") {
                     if let selectedWarehouse {
-                        store.restock(Order(productId: product.id, warehouseId: selectedWarehouse.id, stock: -quantity, action: "Sale", date: date))
+                        store.restock(Order(productId: product.id, warehouseId: selectedWarehouse.id, stock: -quantity, action: "Sale", date: date, notes: notes))
                         
                         let quantity = store.getQuantity(productId: product.id)
                         if quantity == 0 {
@@ -84,14 +84,9 @@ struct SaleView: View {
                 .disabled(quantity <= 0 || selectedWarehouse == nil)
             }
         }
-        .scrollContentBackground(.hidden)
-        .background(Color.background)
+        .onAppear(){
+            store.loadUserData()
+        }
     }
 }
 
-#Preview {
-    NavigationStack {
-        SaleView(product: .constant(Product.example[0]))
-            .environment(InventoryViewModel())
-    }
-}

@@ -12,7 +12,7 @@ public class AuthResponse {
 
     private String username;
     private String token;
-    private String firtName;
+    private String firstName;
     private String lastName;
     private String email;
 }

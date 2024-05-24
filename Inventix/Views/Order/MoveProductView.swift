@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MoveProductView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @Environment(\.dismiss) private var dismiss
     @Binding var product: Product
     @State private var quantity = 0
@@ -16,7 +16,7 @@ struct MoveProductView: View {
     @State private var toWarehouse: Warehouse?
     @State private var notes: String = ""
     @State private var date = Date()
-
+    @State private var quantiesOfStore: Int = 0
     var body: some View {
         Form {
             Section("Name") {
@@ -33,8 +33,13 @@ struct MoveProductView: View {
             }
             
             Section {
-                TextField("Units", value: $quantity, format: .number)
-                    .keyboardType(.numberPad)
+                if quantity == nil || quantity == 0 {
+                    TextField("Available: \(quantiesOfStore)", value: $quantity, formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
+                } else {
+                    TextField("Units", value: $quantity, formatter: NumberFormatter())
+                        .keyboardType(.numberPad)
+                }
             } header: {
                 HStack {
                     Text("Quantity")
@@ -94,18 +99,19 @@ struct MoveProductView: View {
                     quantity == 0 ||
                     fromWarehouse == nil ||
                     toWarehouse == nil ||
-                    quantity > store.getQuantity(productId: product.id)
+                    quantity > quantiesOfStore
                 )
             }
         }
-        .scrollContentBackground(.hidden)
-        .background(Color.background)
+        .onAppear(){
+            store.loadUserData()
+        }
+        .onChange(of: fromWarehouse) { newValue in
+            if let warehouse = newValue {
+                self.quantiesOfStore = store.getWarehouses(productId: product.id)[warehouse] ?? 0
+            }
+            print(quantiesOfStore)
+        }
     }
 }
 
-#Preview {
-    NavigationStack {
-        MoveProductView(product: .constant(Product.example[0]))
-            .environment(InventoryViewModel())
-    }
-}

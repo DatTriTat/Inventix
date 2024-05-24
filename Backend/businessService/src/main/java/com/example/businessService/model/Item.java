@@ -2,14 +2,15 @@ package com.example.businessService.model;
 
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "ITEMS")
@@ -17,33 +18,42 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Item {
 
-    private @Id @GeneratedValue @JsonIgnore Long id;
+    // Use UUID for the primary key
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @NotNull(message = "Name cannot be empty")
-    @Column(name = "Name")
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "description", nullable = true)
+    private String description = "";
 
     @NotNull(message = "Category cannot be empty")
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @Column(name = "description")
-    private String description;
+    @NotNull(message = "Price cannot be empty")
+    @Column(name = "price", nullable = false)
+    private double price;
 
-    @Column(name = "expired_Date")
-    private LocalDateTime expired;
-
-    @Column(name = "SKU")
     @NotNull(message = "SKU cannot be empty")
+    @Column(name = "sku", nullable = false)
     private String sku;
 
-    @Column(name = "stockLevel")
-    @NotNull(message = "Min.STOCK LEVEL cannot be empty")
-    private String stockLevel;
+    @NotNull(message = "Minimum stock level cannot be empty")
+    @Column(name = "min_stock", nullable = false)
+    private int minStock;
 
-    @Column(name = "image_URL")
+    @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(name = "expired_date")
+    private LocalDateTime expired;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -52,4 +62,12 @@ public class Item {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    // Pre-persist method to set UUID if not already assigned
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+    }
 }

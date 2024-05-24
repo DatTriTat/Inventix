@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddCategoryView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @EnvironmentObject private var store: InventoryViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var name = ""
     @State private var description = ""
@@ -53,6 +53,6 @@ struct AddCategoryView: View {
 #Preview {
     NavigationStack {
         AddCategoryView()
-            .environment(InventoryViewModel())
+            .environmentObject(InventoryViewModel())
     }
 }

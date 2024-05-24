@@ -16,6 +16,11 @@ struct HomeView: View {
     @State private var scannedCode: String?
     @State private var showAddProduct = false
     @State private var showRestock = false
+    @State private var isChatVisible = false
+
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.tabview
+    }
     
     var body: some View {
         ZStack {
@@ -26,7 +31,6 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            // 1 checking for permission
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                 if success {
                     print("Permission approved!")
@@ -42,18 +46,36 @@ struct HomeView: View {
         .onChange(of: store.isScheduled) {
             scheduleNotification()
         }
+        .overlay(
+                Button(action: {
+                    isChatVisible = true
+                }) {
+                    Image(systemName: "message.fill")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.accentColor)
+                        .clipShape(Circle())
+                        .shadow(radius: 10)
+                }
+                .padding(.trailing, 25)
+                .padding(.bottom, 80),
+                alignment: .bottomTrailing
+            )
+        .sheet(isPresented: $isChatVisible) {
+            ChatView(store: InventoryViewModel(), openAIManager: OpenAIManager(store: InventoryViewModel()))
+        }
     }
     
     private var iphoneNavigationView: some View {
         TabView(selection: $selectedMenuItem) {
             NavigationStack {
                 ProductListView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             NavigationLink {
-                                ProfileView()
-                                    .environment(store)
+                                ProfileView(authenticationViewModel: AuthenticationViewModel(inventoryViewModel: InventoryViewModel()))
+                                    .environmentObject(InventoryViewModel())
                                     .navigationTitle("Profile")
                             } label: {
                                 profile
@@ -67,12 +89,12 @@ struct HomeView: View {
 
             NavigationStack {
                 OrderListView(orders: store.orders)
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             NavigationLink {
-                                ProfileView()
-                                    .environment(store)
+                                ProfileView(authenticationViewModel: AuthenticationViewModel(inventoryViewModel: InventoryViewModel()))
+                                    .environmentObject(InventoryViewModel())
                                     .navigationTitle("Profile")
                             } label: {
                                 profile
@@ -86,7 +108,7 @@ struct HomeView: View {
             
             NavigationStack {
                 ScannerView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
                     .background(Color.background)
             }
             .tabItem { Label("Scan", systemImage: "qrcode.viewfinder") }
@@ -94,12 +116,12 @@ struct HomeView: View {
             
             NavigationStack {
                 WarehouseListView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             NavigationLink {
-                                ProfileView()
-                                    .environment(store)
+                                ProfileView(authenticationViewModel: AuthenticationViewModel(inventoryViewModel: InventoryViewModel()))
+                                    .environmentObject(InventoryViewModel())
                                     .navigationTitle("Profile")
                             } label: {
                                 profile
@@ -113,12 +135,13 @@ struct HomeView: View {
             
             NavigationStack {
                 CategoryListView()
-                    .environment(store)
+                    .environmentObject(NavigationController())
+                    .environmentObject(InventoryViewModel())
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             NavigationLink {
-                                ProfileView()
-                                    .environment(store)
+                                ProfileView(authenticationViewModel: AuthenticationViewModel(inventoryViewModel: InventoryViewModel()))
+                                    .environmentObject(InventoryViewModel())
                                     .navigationTitle("Profile")
                             } label: {
                                 profile
@@ -129,6 +152,7 @@ struct HomeView: View {
             }
             .tabItem { Label("Categories", systemImage: "square.grid.2x2") }
             .tag(Menu.categories as Menu?)
+            
         }
     }
     
@@ -157,22 +181,23 @@ struct HomeView: View {
             switch selectedMenuItem {
             case .products:
                 ProductListView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
             case .orders:
                 OrderListView(orders: store.orders)
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
             case .scanner:
                 ScannerView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
             case .warehouses:
                 WarehouseListView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
             case .categories:
                 CategoryListView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
+                    .environmentObject(NavigationController())
             case .profile:
-                ProfileView()
-                    .environment(store)
+                ProfileView(authenticationViewModel: AuthenticationViewModel(inventoryViewModel: InventoryViewModel()))
+                    .environmentObject(InventoryViewModel())
             default:
                 Text("Select a menu")
                     .background(Color.background)

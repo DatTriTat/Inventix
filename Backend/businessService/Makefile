@@ -41,8 +41,8 @@ docker-shell:
 docker-push:
 	mvn package
 	docker login
-	docker build -t dattritat/service-registry:v0.1 .
-	docker push dattritat/service-registry:v0.1
+	docker build -t dattritat/business-service:v0.2 .
+	docker push dattritat/business-service:v0.2
 
 # Compose
 

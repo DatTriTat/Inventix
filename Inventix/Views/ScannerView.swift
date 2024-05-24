@@ -9,11 +9,12 @@ import SwiftUI
 import CodeScanner
 
 struct ScannerView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @State private var isPresentingScanner = false
     @State private var scannedCode: String?
     @State private var showAddProduct = false
     @State private var showRestock = false
+    @State private var navigateToHome = false
 
     var body: some View {
         ZStack {
@@ -37,17 +38,21 @@ struct ScannerView: View {
             }
             .sheet(item: $scannedCode) { code in
                 NavigationStack {
-                    if let product = store.products.first(where: { $0.sku == code }) {
-                        RestockView(product: product)
-                            .environment(store)
+                    if let index = store.products.firstIndex(where: { $0.sku == code }) {
+                        NavigationLink(destination: RestockView(product: $store.products[index])){
+                            Text("Restock Product")
+                        }
                     } else if !code.isEmpty {
                         AddProductView(sku: code)
-                            .environment(store)
+                            .environmentObject(InventoryViewModel())
                     } else {
                         Text("Invalid Code")
                     }
                 }
             }
+        }
+        .onAppear() {
+            store.loadUserData()
         }
         .ignoresSafeArea()
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
@@ -58,5 +63,5 @@ struct ScannerView: View {
 
 #Preview {
     ScannerView()
-        .environment(InventoryViewModel())
+        .environmentObject(InventoryViewModel())
 }

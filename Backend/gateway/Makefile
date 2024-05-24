@@ -40,8 +40,8 @@ docker-shell:
 docker-push:
 	mvn package
 	docker login
-	docker build -t dattritat/gateway .
-	docker push dattritat/spring-starbucks-api:v3.6
+	docker build -t dattritat/gateway:v0.2 .
+	docker push dattritat/gateway:v0.2
 
 # Compose
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductListView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @EnvironmentObject private var store: InventoryViewModel 
     @State private var searchText = ""
     @State private var showAddProduct = false
     
@@ -27,7 +27,9 @@ struct ProductListView: View {
                                 NavigationLink {
                                     VerticalProductListView(products: products)
                                         .navigationTitle(category.name)
-                                        .environment(store)
+                                        .environmentObject(InventoryViewModel())
+                                        .environmentObject(NavigationController())
+
                                 } label: {
                                     HStack(alignment: .center) {
                                         Text("See All")
@@ -42,23 +44,23 @@ struct ProductListView: View {
                         
                         NavigationStack {
                             ScrollView(.horizontal) {
-                                HStack {
+                                HStack(alignment: .firstTextBaseline) {
                                     ForEach(products) { product in
                                         NavigationLink {
                                             ProductDetailView(product: product)
-                                                .environment(store)
+                                                .environmentObject(InventoryViewModel())
+                                                .environmentObject(NavigationController())
                                         } label: {
                                             VStack(alignment: .leading) {
                                                 AsyncImage(url: URL(string: product.imageUrl)) { image in
                                                     image
                                                         .resizable()
                                                         .scaledToFit()
-                                                        .frame(width: 150, height: 150)
                                                         .clipShape(RoundedRectangle(cornerRadius: 12))
                                                 } placeholder: {
                                                     ProgressView()
                                                 }
-                                                .frame(width: 150, height: 150)
+                                                .frame(height: 110)
                                                 
                                                 Text(product.name)
                                                     .fontWeight(.semibold)
@@ -69,7 +71,7 @@ struct ProductListView: View {
                                                 .foregroundStyle(.secondary)
                                                 .font(.subheadline)
                                             }
-                                            .frame(width: 160, height: 200)
+                                            .frame(width: 140, height: 170)
                                         }
                                         .buttonStyle(.plain)
                                     }
@@ -102,12 +104,15 @@ struct ProductListView: View {
             }
         }
         .background(Color.background)
+        .onAppear(){
+            store.loadUserData()
+        }
     }
 }
 
 #Preview {
     NavigationStack {
         ProductListView()
-            .environment(InventoryViewModel())
+            .environmentObject(InventoryViewModel())
     }
 }

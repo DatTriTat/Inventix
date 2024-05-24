@@ -14,9 +14,12 @@ run: build
 	java -jar target/userService-0.1.jar 
 
 # MySQL DB
+docker-build:
+	docker build -t user-service .          
+
 
 docker-run:
-	docker run --name service-registry -td -p 8761:8761 service-registry
+	docker run --network inventix-network --name user-service -td -p 8081:8081 user-service
 
 mysql:
 	docker run -d --network inventix-network --name mysql -td -p 3306:3306 -e MYSQL_ROOT_PASSWORD=data mysql:8.0
@@ -36,8 +39,8 @@ docker-shell:
 docker-push:
 	mvn package
 	docker login
-	docker build -t dattritat/service-registry:v0.1 .
-	docker push dattritat/service-registry:v0.1
+	docker build -t dattritat/user-service:v0.1 .          
+	docker push dattritat/user-service:v0.1
 
 # Compose
 

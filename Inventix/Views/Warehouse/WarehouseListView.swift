@@ -9,8 +9,7 @@ import SwiftUI
 import MapKit
 
 struct WarehouseListView: View {
-    @Environment(InventoryViewModel.self) private var store
-
+    @StateObject private var store = InventoryViewModel()
     @State private var searchTextWarehouse = ""
     @State private var searchTextProduct = ""
     @State private var showAddWarehouse = false
@@ -43,7 +42,7 @@ struct WarehouseListView: View {
                         List(store.filteredProducts(products, searchText: searchTextProduct)) { product in
                             NavigationLink {
                                 ProductDetailView(product: product, isWarehouseView: true)
-                                    .environment(store)
+                                    .environmentObject(InventoryViewModel())
                             } label: {
                                 HStack(alignment: .top) {
                                     AsyncImage(url: URL(string: product.imageUrl)) { image in
@@ -83,20 +82,15 @@ struct WarehouseListView: View {
                             Text(warehouse.address)
                                 .foregroundStyle(.secondary)
                         }
+                        
                         Spacer()
-                        Button {
-                            showEditWarehouse.toggle()
-                        } label: {
-                            Image(systemName: "square.and.pencil")
-                                .imageScale(.large)
-                                .foregroundStyle(Color.accentColor)
-                        }
+                        
                     }
                 }
                 .sheet(isPresented: $showEditWarehouse) {
                     NavigationStack {
                         EditWarehouseView(warehouse: warehouse)
-                            .environment(store)
+                            .environmentObject(InventoryViewModel())
                     }
                 }
             }
@@ -107,13 +101,13 @@ struct WarehouseListView: View {
         .sheet(isPresented: $showAddWarehouse) {
             NavigationStack {
                 AddWarehouseView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
             }
         }
         .sheet(isPresented: $showAddProduct) {
             NavigationStack {
                 AddProductView()
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
             }
         }
         .scrollIndicators(.hidden)
@@ -129,7 +123,9 @@ struct WarehouseListView: View {
             }
         }
         .onAppear {
+            store.loadUserData()
             for warehouse in store.warehouses {
+                print(warehouse)
                 let geocoder = CLGeocoder()
                 geocoder.geocodeAddressString(warehouse.address) { placemarks, error in
                     guard let placemark = placemarks?.first, let location = placemark.location else {
@@ -150,6 +146,6 @@ struct WarehouseListView: View {
 #Preview {
     NavigationStack {
         WarehouseListView()
-            .environment(InventoryViewModel())
+            .environmentObject(InventoryViewModel())
     }
 }

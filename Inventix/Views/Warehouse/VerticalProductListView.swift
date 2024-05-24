@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct VerticalProductListView: View {
-    @Environment(InventoryViewModel.self) private var store
+    @StateObject private var store = InventoryViewModel()
     @State private var searchText = ""
     var products: [Product]
-    
+    @EnvironmentObject private var navigationController: NavigationController
+    @Environment(\.presentationMode) var presentationMode
+
     var body: some View {
         List(store.filteredProducts(products, searchText: searchText)) { product in
             NavigationLink {
                 ProductDetailView(product: product)
-                    .environment(store)
+                    .environmentObject(InventoryViewModel())
+                    .environmentObject(navigationController)
+
             } label: {
                 HStack(alignment: .top) {
                     AsyncImage(url: URL(string: product.imageUrl)) { image in
@@ -43,12 +47,18 @@ struct VerticalProductListView: View {
         .listStyle(.plain)
         .background(Color.background)
         .searchable(text: $searchText)
+        .onAppear(){
+            store.loadUserData()
+        }
+
+        .onChange(of: navigationController.shouldReturnToCategoryList) { shouldReturn in
+                    if shouldReturn {
+                        navigationController.shouldReturnToCategoryList = false
+                        presentationMode.wrappedValue.dismiss()  // Dismiss this view
+
+                    }
+                }
+        
     }
 }
 
-#Preview {
-    NavigationStack {
-        VerticalProductListView(products: Product.example)
-            .environment(InventoryViewModel())
-    }
-}
